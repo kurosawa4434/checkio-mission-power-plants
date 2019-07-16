@@ -1,0 +1,50 @@
+def power_plants(network, ranges):
+
+    return []
+
+
+if __name__ == '__main__':
+    from collections import defaultdict
+
+
+    def checker(func, network, ranges):
+        net_dic = defaultdict(set)
+        all_cities = set()
+        for a, b in network:
+            net_dic[a].add(b)
+            net_dic[b].add(a)
+            all_cities |= {a, b}
+
+        # check answer
+        your_cities, your_ranges = set(), []
+        answer = list(func(network, ranges))
+        for item in answer:
+            if isinstance(item, tuple) and len(item) == 2:
+                your_cities.add(item[0])
+                your_ranges.append(item[1])
+            else:
+                print('wrong type:', item)
+                return False
+        if your_cities - all_cities or sorted(your_ranges) != sorted(ranges):
+            return False
+
+        # check power supply
+        powered_cities = set()
+        for c, p in answer:
+            next_cities = {c}
+            done_cities = {c}
+            for _ in range(p):
+                for nx in set(next_cities):
+                    next_cities |= net_dic[nx]
+                next_cities -= done_cities
+                done_cities |= next_cities
+            powered_cities |= done_cities
+        return not all_cities - powered_cities
+
+
+    assert checker(power_plants, [['A', 'B'], ['B', 'C']], [1]), '1 power_plant'
+    assert checker(power_plants, [['A', 'B'], ['B', 'C'], ['C', 'D'], ['D', 'E'],
+                                  ['A', 'F'], ['F', 'G'], ['G', 'H']], [2, 1]), '2 power_plants'
+    assert checker(power_plants, [['A', 'B'], ['B', 'C'], ['A', 'D'], ['B', 'E']], [1, 0]), 'power 0 plant'
+    assert checker(power_plants, [['A', 'B'], ['A', 'C'], ['B', 'D'], ['C', 'D']], [2]), 'circle'
+    print('The local tests are done. Click on "Check" for more real tests.')
