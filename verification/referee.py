@@ -3,7 +3,7 @@ from checkio import api
 from checkio.referees.io import CheckiOReferee
 from checkio.referees import cover_codes
 from tests import TESTS
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 
 def checker(inputs, user_answer):
@@ -24,7 +24,7 @@ def checker(inputs, user_answer):
             powers.append(answer[1])
         else:
             return False, (user_answer, 'Fail')
-    if cities - all_cities or sorted(plants) != sorted(powers):
+    if cities - all_cities or Counter(powers) - Counter(plants):
         return False, (user_answer, 'Fail')
 
     # power supply check
