@@ -41,9 +41,13 @@ def checker(inputs, user_answer):
     return not all_cities - powered_cities, (user_answer, 'Success')
 
 
-cover_iterable = '''
+cover = '''
 def cover(func, args):
-    return list(func(*args))
+    network, ranges = args
+    network = set(map(tuple, network))
+    res = func(network, ranges)
+    assert isinstance(res, dict)
+    return list(res.items())
 '''
 
 api.add_listener(
@@ -56,7 +60,7 @@ api.add_listener(
             "js": "powerPlants"
         },
         cover_code={
-            'python-3': cover_iterable,
+            'python-3': cover,
             'js-node': cover_codes.js_unwrap_args
         }
     ).on_ready)
