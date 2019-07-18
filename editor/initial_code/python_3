@@ -1,6 +1,7 @@
-def power_plants(network, ranges):
+from typing import Set, Tuple, List, Dict
 
-    return []
+def power_plants(network: Set[Tuple[str, str]], ranges: List[int]) -> Dict[str, int]:
+    return {}
 
 
 if __name__ == '__main__':
