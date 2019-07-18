@@ -9,7 +9,7 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
             $(dom.parentNode).find(".answer").remove()
 
             const result = data.ext.result
-            const output = data.out
+            const power_plants= data.out
             const exp = data.ext.explanation.join('')
             const rows = data.ext.explanation.length
             const cols = data.ext.explanation[0].length
@@ -88,10 +88,6 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
              *
              *----------------------------------------------*/
             const [network, powers] = data.in
-            const power_plants = {}
-            output.forEach(([city, power], i)=>{
-                power_plants[city] = power
-            })
 
             /*----------------------------------------------*
              *

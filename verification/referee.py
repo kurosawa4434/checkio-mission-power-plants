@@ -18,18 +18,15 @@ def checker(inputs, user_answer):
 
     # value check
     cities, powers = set(), []
-    for answer in user_answer:
-        if isinstance(answer, (tuple, list)) and len(answer) == 2:
-            cities.add(answer[0])
-            powers.append(answer[1])
-        else:
-            return False, (user_answer, 'Fail')
+    for k, v in user_answer.items():
+        cities.add(k)
+        powers.append(v)
     if cities - all_cities or Counter(powers) - Counter(plants):
         return False, (user_answer, 'Fail')
 
     # power supply check
     powered_cities = set()
-    for c, p in user_answer:
+    for c, p in user_answer.items():
         next_cities = {c}
         done_cities = {c}
         for _ in range(p):
@@ -47,7 +44,7 @@ def cover(func, args):
     network = set(map(tuple, network))
     res = func(network, ranges)
     assert isinstance(res, dict)
-    return list(res.items())
+    return res
 '''
 
 api.add_listener(
