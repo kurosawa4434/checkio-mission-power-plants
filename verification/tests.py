@@ -6,6 +6,8 @@ Each test is dict with
     "answer" -- your right answer
     "explanation" -- not necessary key, it's using for additional info in animation.
 """
+from random_tests import random_test
+
 basic_tests = [
     [
         [['A', 'B'], ['B', 'C']],
@@ -150,7 +152,11 @@ def make_tests(tests):
              'explanation': bt[2]} for bt in tests]
 
 
+shapes = [(5, 5), (5, 6), (5, 7), (6, 6), (8, 5),
+          (7, 6), (5, 9), (6, 8), (7, 7), (10, 5)]
+
 TESTS = {
     "Basics": make_tests(basic_tests),
     "Extra": make_tests(extra_tests),
+    "Random": list(map(random_test, shapes)),
 }
