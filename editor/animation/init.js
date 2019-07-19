@@ -15,9 +15,11 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
             const cols = data.ext.explanation[0].length
             const result_addon_01 = data.ext.result_addon[1]
 
+            const scale = Math.min(1, 5 / Math.max(rows, cols))
+
             const DELAY = 600
-            const RADIUS = 15
-            const INTERVAL = 63
+            const RADIUS = 15 * scale
+            const INTERVAL = 63 * scale
             const OFFSET = 25
             const BLUE = '#65A1CF'
             const BASE = '#294270'
@@ -33,17 +35,17 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
                 city: {
                     normal: {
                         'stroke': BASE,
-                        'stroke-width': 1.5,
+                        'stroke-width': 1.5 * scale,
                         'fill': WHITE,
                     },
                     powered: {
                         'stroke': BASE,
-                        'stroke-width': 1.5,
+                        'stroke-width': 1.5 * scale,
                         'fill': '#faba00',
                     },
                     plant: {
                         'stroke': BASE,
-                        'stroke-width': 2,
+                        'stroke-width': 2 * scale,
                         'fill': '#F0801A',
                         'fill': ORANGE,
                     },
@@ -51,23 +53,23 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
                 text: {
                     city: {
                         'stroke': BASE,
-                        'font-size': 14,
+                        'font-size': 14 * scale,
                     },
                     power: {
                         'stroke': BASE,
                         'stroke-width': 0,
-                        'font-size': 9,
+                        'font-size': 9 * scale,
                         'fill': WHITE,
                         'fill': BASE,
                     },
                 },
                 line: {
                     normal: {
-                        'stroke-width': 3,
+                        'stroke-width': 3 * scale,
                         'stroke': BLUE,
                     },
                     power: {
-                        'stroke-width': 3,
+                        'stroke-width': 3 * scale,
                         'stroke': ORANGE,
                     },
                 },
@@ -159,7 +161,7 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
             for (const city in power_plants) {
                 cities[city].circle.animate(attr.city.plant, DELAY)
                 const [cx, cy] = cities[city].coord
-                paper.text(cx+8, cy-6, cities[city].power).attr(attr.text.power)
+                paper.text(cx+8*scale, cy-6*scale, cities[city].power).attr(attr.text.power)
                 first = false
             }
 
