@@ -35,12 +35,12 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
                 city: {
                     normal: {
                         'stroke': BASE,
-                        'stroke-width': 1.5 * scale,
+                        'stroke-width': Math.min(1.2, 1.5 * scale),
                         'fill': WHITE,
                     },
                     powered: {
                         'stroke': BASE,
-                        'stroke-width': 1.5 * scale,
+                        'stroke-width': Math.min(1.2, 1.5 * scale),
                         'fill': '#faba00',
                     },
                     plant: {
@@ -65,11 +65,11 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
                 },
                 line: {
                     normal: {
-                        'stroke-width': 3 * scale,
+                        'stroke-width': 2.3 * scale,
                         'stroke': BLUE,
                     },
                     power: {
-                        'stroke-width': 3 * scale,
+                        'stroke-width': 2.3 * scale,
                         'stroke': ORANGE,
                     },
                 },
