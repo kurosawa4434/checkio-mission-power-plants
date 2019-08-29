@@ -1,15 +1,14 @@
-
 <p>
-    This mission is a another version of
-    <a href="https://py.checkio.org/en/mission/power-supply/">Power Supply</a>
-    with <a href="https://py.checkio.org/user/oduvan/">oduvan</a>'s idea.<br>
-    You have to place the given power plants properly and supply power to all the cities.
+    This mission is another version of the
+    <a href="https://py.checkio.org/en/mission/power-supply/">”Power Supply”</a> mission 
+    originated from <a href="https://py.checkio.org/user/oduvan/">oduvan</a>'s idea.<br>
+    You have to properly place the given power plants and supply power to all the cities.
 </p>
 
 <p>
 The intercity network and the range of each power plant are given as input values.
-A power plant can provide power to placed city and within its range.
-You have to return a dictionary: the key is the city where you will place the power plant and the value is its range.
+A power plant can provide power to the city where it’s been placed and within its range.
+You have to return a dictionary, where the key is the city in which you’ll place the power plant and the value is its range.
 
 </p>
 
@@ -33,15 +32,15 @@ power_plants({('A', 'B'), ('B', 'C'), ('A', 'D'), ('B', 'E')}, [1, 0]) == {'B': 
     <strong>Input: </strong>
     <p>
     <ul>
-        <li>The first: The intercity network, represented as a set of connections. Each connection is a tuple of two nodes that are connected.</li>
-        <li>The second: The range of each power plant, represented as a list of integer.</li>
+        <li>The intercity network represented as a set of connections, where each connection is a tuple of two nodes connected with each other.</li>
+        <li>The range of each power plant, represented as a list of integers.</li>
     </ul>
 </p>
 
 <p>
     <strong>Output: </strong>
     <ul>
-    <li>A dictionary of placements, each key is the city where you will place the power plant and each value is the corresponding range.</li>
+    <li>A dictionary of placements, where each key is the city in which you’ll place the power plant and each value is the corresponding range.</li>
 </ul>
 </p>
 
