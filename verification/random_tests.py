@@ -1,17 +1,25 @@
 import numpy as np
-from scipy.ndimage import binary_dilation
+# from scipy.ndimage import binary_dilation
 import random
 import math
 import string
 # from my_solution import power_plants  # See the last comment below.
 
 
+# def scope(shape, pos, r):
+#     """ Get the grid (of given shape) of supplied cities by a power plant
+#         at position pos of range r, in an elegant way. """
+#     g = np.zeros(shape, int)
+#     g[pos] = 1
+#     return binary_dilation(g, iterations=r) if r else g
+
+# This is IMO inelegant but efficient enough and does not require scipy,
+# which is temporarily disabled on CheckiO at the time of this change.
 def scope(shape, pos, r):
-    """ Get the grid (of given shape) of supplied cities by a power plant
-        at position pos of range r, in an elegant way. """
-    g = np.zeros(shape, int)
-    g[pos] = 1
-    return binary_dilation(g, iterations=r) if r else g
+    return np.array([
+        [abs(x - pos[0]) + abs(y - pos[1]) <= r for y in range(shape[1])]
+        for x in range(shape[0])
+    ])
 
 
 def range_weight(r):
